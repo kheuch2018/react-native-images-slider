@@ -20,7 +20,7 @@ yarn add react-native-images-slider
 
 
 | Props | Type | Default | Description 
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | images | Array of object | [] | An array containing images url objects
 | imageWidthPercentage | int | 90 | The space occupated horizontally by the image in percentage
 | imageHeight | int | 200 | The height of the image
