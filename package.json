@@ -1,12 +1,12 @@
 {
   "name": "react-native-images-slider",
   "version": "1.1.0",
-  "description": "A react native images slider component",
+  "description": "A forked and rewrited react native images slider component",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "git repository": "https://github.com/Talha-Jawed/react-native-swipe-image",
+  "git repository": "https://github.com/kheuch2018/react-native-images-slider",
   "keywords": [
     "react-native-images-slider",
     "react-native-slider",
