@@ -3,37 +3,43 @@ import { StyleSheet, View, Image, ScrollView, Dimensions, Text, StatusBar, Platf
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 
-function Swiper(props) {
+function Swiper({images=[],imageWidthPercentage=90 ,imageHeight=200, imgStyle={}, viewStyle={},swipeBottom,swipeTop }) {
     const handleClick = (e, item) => {
-        const { swipeBottom, swipeTop } = props
+        
         if (e.nativeEvent.contentOffset.y < 0) {
             swipeBottom(item)
         } else {
             swipeTop(item)
         }
     }
-    const { images, textSize, textColor, textBold, textUnderline, imageHeight } = props
-    const height = imageHeight && imageHeight > (screenHeight - Platform.OS === 'ios' ? 0
-        : StatusBar.currentHeight) ? (screenHeight - Platform.OS === 'ios' ? 0 : StatusBar.currentHeight) : imageHeight;
+   
+    // const height = imageHeight && imageHeight > (screenHeight - Platform.OS === 'ios' ? 0
+    //     : StatusBar.currentHeight) ? (screenHeight - Platform.OS === 'ios' ? 0 : StatusBar.currentHeight) : imageHeight;
+    let myImgStyle = {height: parseInt(imageHeight), width: screenWidth * imageWidthPercentage/100,...imgStyle }
+    let myViewStyle={ width: screenWidth, alignItems: "center",...viewStyle }
     return (
-        <ScrollView horizontal={true} pagingEnabled={true} >
+        <View style={{height: imageHeight}}>
+        <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} >
             {images &&
                 images.map((item, index) => {
-                    return (typeof item.url === 'string' && typeof item.name === 'string' ?
-                        <ScrollView key={index} onScrollEndDrag={(e) => handleClick(e, item)}>
+                    return (typeof item.url === 'string'|| item.local ?
+                        <ScrollView
+                        key={index} onScrollEndDrag={(e) => handleClick(e, item)}>
+                            <View style={myViewStyle}>
+                            
+                         
+                            {
+                                item.local ? 
+                                <Image
+                                style={myImgStyle}
+                                source={item.local}
+                            /> :
                             <Image
-                                style={{ height: height, width: screenWidth }}
+                                style={myImgStyle}
                                 source={{ uri: item.url }}
                             />
-                            <View style={styles.imageText}>
-                                <Text style={[
-                                    typeof textSize === 'number' && textSize > 0 && textSize <= 40 ? { fontSize: textSize } : { fontSize: 30 },
-                                    typeof textBold === 'boolean' && textBold && { fontWeight: 'bold' },
-                                    typeof textColor === 'string' && { color: textColor },
-                                    typeof textUnderline === 'boolean' && textUnderline && { textDecorationLine: 'underline' }
-                                ]}>
-                                    {item.name && item.name}
-                                </Text>
+                            }
+                           
                             </View>
                         </ScrollView>
                         :
@@ -42,17 +48,9 @@ function Swiper(props) {
                 })
             }
         </ScrollView>
+        </View>
     );
 }
 
 export default Swiper;
 
-const styles = StyleSheet.create({
-    imageText: {
-        position: 'absolute',
-        bottom: 14,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%'
-    },
-});

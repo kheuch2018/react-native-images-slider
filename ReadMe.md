@@ -1,35 +1,31 @@
 # React Native Swipe Image
 
-A React Native library to swipe image on top, bottom, left, right like your favorite platforms!
+A React Native library to swipe image on left and right (Carousel)
 
 ## Installation
 
 ```bash
-npm install react-native-swipe-image
+npm install react-native-images-slider
 ```
 OR
 
 ```bash
-yarn add react-native-swipe-image
+yarn add react-native-images-slider
 ```
 
-![](https://media.giphy.com/media/JTIYENN2XFepCE0g9n/giphy.gif)
+
 
 
 ## Props
 
 
-| Props | Type | Default |
-| --- | --- | --- |
-| image | Array of object | required |
-| swipeBottom | function() | required |
-| swipeTop | function() | required |
-| imageHeight | Number | required |
-| textSize | Number | max 40 |
-| textBold | boolean | false |
-| textUnderline | boolean | false |
-| textColor | String | - |
-
+| Props | Type | Default | Description 
+| --- | --- | --- | --- | --- |
+| images | Array of object | [] | An array containing images url objects
+| imageWidthPercentage | int | 90 | The space occupated horizontally by the image in percentage
+| imageHeight | int | 200 | The height of the image
+| imgStyle | object | {} | Custom styles for the images
+| viewStyle | object | {} | Custom styles for the images wrapper
 
 ## Usage
 
